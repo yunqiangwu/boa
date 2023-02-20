@@ -39,17 +39,17 @@ let {
    * The conda version to download from remote URL.
    * @string
    */
-  BOA_CONDA_VERSION = 'Miniconda3-4.7.12.1',
+  BOA_CONDA_VERSION = 'Miniconda3-py39_4.9.2',
   /**
    * The conda index URI, if `BOA_TUNA` is specified, it will be set.
    * @string
    */
   BOA_CONDA_INDEX,
   /**
-   * The python library version, for example 3.7m
+   * The python library version, for example 3.9m
    * @string
    */
-  BOA_PYTHON_VERSION = '3.7m',
+  BOA_PYTHON_VERSION = '3.9',
   /**
    * Install the base packages: numpy/scikit/...
    */
@@ -72,7 +72,7 @@ if (typeof BOA_CONDA_MIRROR === 'string' && BOA_CONDA_MIRROR.length > 0) {
 
 // Specify BOA_TUNA for simplifying the env setup.
 if (BOA_TUNA) {
-  BOA_CONDA_REMOTE = 'https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda';
+  BOA_CONDA_REMOTE = 'https://mirrors.bfsu.edu.cn/anaconda/miniconda';
   BOA_CONDA_INDEX = 'https://pypi.tuna.tsinghua.edu.cn/simple';
 }
 

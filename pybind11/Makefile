@@ -5,7 +5,8 @@ BUILD="$(ROOT)/src"
 DOWNLOAD_DIR="$(ROOT)/downloads"
 ARCHIVE_DIR="$(ROOT)/downloads/pybind11-$(VERSION)"
 TARBALL="$(ROOT)/downloads/pybind11-v$(VERSION).tgz"
-URL=https://github.com/pybind/pybind11/archive/v$(VERSION).tar.gz
+GIT_MIRROR ?= https://ghproxy.com/
+URL=${GIT_MIRROR}https://github.com/pybind/pybind11/archive/v$(VERSION).tar.gz
 
 ifeq ($(DISABLE_AUTO_SWITCH),)
 	# check the network and switch to corresponding mirror.

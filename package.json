@@ -1,5 +1,5 @@
 {
-  "name": "@pipcook/boa",
+  "name": "@waynew/boa",
   "version": "2.1.0",
   "description": "Use Python modules seamlessly in Node.js",
   "main": "lib/index.js",
