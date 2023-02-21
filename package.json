@@ -11,6 +11,7 @@
     "install": "node-pre-gyp install --fallback-to-build=false || npm run build",
     "pretest": "npm run lint && ./.miniconda/bin/pip install numpy==1.17.4",
     "test": "ava",
+    "postinstall": "npm run build",
     "cov": "nyc --reporter=text-summary npm run test",
     "cov:report": "nyc report -r=lcov",
     "lint": "npm run lint:js && npm run lint:clang",

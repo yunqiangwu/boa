@@ -220,7 +220,7 @@ Returns a string for representing the object, internally it calls the CPython's 
 
 ```js
 console.log(boa.import('os').toString());
-// "<module 'os' from '/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/lib/python3.7/os.py'>"
+// "<module 'os' from '/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/lib/python3.9/os.py'>"
 ```
 
 #### `.prototype.slice(start, stop, step)`
@@ -434,7 +434,7 @@ $ npm test
 If you are using virtualenv or conda, you can just set up your system environment PYTHONPATH to point to your site-packages folder. For instance:
 
 ```sh
-$ export PYTHONPATH = /Users/venv/lib/python3.7/site-packages
+$ export PYTHONPATH = /Users/venv/lib/python3.9/site-packages
 ```
 
 ## License
