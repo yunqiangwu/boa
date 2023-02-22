@@ -1,15 +1,14 @@
 {
   "name": "@waynew/boa",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Use Python modules seamlessly in Node.js",
   "main": "lib/index.js",
   "scripts": {
     "clean": "sh tools/clean-python.sh && make -C ./pybind11/ clean",
     "predeps": "tools/check-dependence.js",
     "deps": "make -C ./pybind11/ && tools/install-python.js",
-    "preinstall": "npm install @mapbox/node-pre-gyp",
     "install": "node-pre-gyp install --fallback-to-build=false || npm run build",
-    "pretest": "npm run lint && ./.miniconda/bin/pip install numpy==1.17.4",
+    "pretest": "npm run lint && ./.miniconda/bin/pip install numpy",
     "test": "ava",
     "postinstall": "npm run build",
     "cov": "nyc --reporter=text-summary npm run test",
@@ -48,7 +47,7 @@
     ]
   },
   "dependencies": {
-    "@mapbox/node-pre-gyp": "^1.0.3",
+    "@mapbox/node-pre-gyp": "^1.0.10",
     "debug": "^4.1.1",
     "node-addon-api": "^3.0.0"
   },
