@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@types/node": "^14.14.37",
-    "ava": "^3.13.0",
+    "ava": "^5.2.0",
     "codecov": "^3.6.5",
     "eslint": "^7.15.0",
     "nyc": "^15.1.0",

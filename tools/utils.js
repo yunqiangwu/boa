@@ -24,7 +24,7 @@ let {
    * The boolean if installing from tuna mirror.
    * @boolean
    */
-  BOA_TUNA,
+  BOA_TUNA = "1",
   /**
    * The boolean if installing the conda.
    */
@@ -71,7 +71,7 @@ if (typeof BOA_CONDA_MIRROR === 'string' && BOA_CONDA_MIRROR.length > 0) {
 }
 
 // Specify BOA_TUNA for simplifying the env setup.
-if (BOA_TUNA) {
+if (BOA_TUNA !== 'none') {
   BOA_CONDA_REMOTE = 'https://mirrors.bfsu.edu.cn/anaconda/miniconda';
   BOA_CONDA_INDEX = 'https://pypi.tuna.tsinghua.edu.cn/simple';
 }
