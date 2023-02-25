@@ -1,5 +1,5 @@
 ROOT=$(abspath .)
-VERSION=2.4.3
+VERSION=2.10.3
 
 BUILD="$(ROOT)/src"
 DOWNLOAD_DIR="$(ROOT)/downloads"
@@ -8,10 +8,10 @@ TARBALL="$(ROOT)/downloads/pybind11-v$(VERSION).tgz"
 GIT_MIRROR ?= https://ghproxy.com/
 URL=${GIT_MIRROR}https://github.com/pybind/pybind11/archive/v$(VERSION).tar.gz
 
-ifeq ($(DISABLE_AUTO_SWITCH),)
-	# check the network and switch to corresponding mirror.
-	CCODE := $(shell curl https://api.userinfo.io/userinfos | node ../tools/check-network-env.js)
-endif
+# ifeq ($(DISABLE_AUTO_SWITCH),)
+# 	# check the network and switch to corresponding mirror.
+# 	CCODE := $(shell curl --insecure https://api.userinfo.io/userinfos | node ../tools/check-network-env.js)
+# endif
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
@@ -21,9 +21,9 @@ endif
 ifeq ($(UNAME_S), Darwin)
 	DOWNLOAD=curl -L -o $(TARBALL) $(URL)
 endif
-ifeq ($(CCODE),CN)
-	URL=https://pipcook.oss-cn-hangzhou.aliyuncs.com/mirrors/pybind11-$(VERSION).tar.gz
-endif
+# ifeq ($(CCODE),CN)
+# 	URL=https://pipcook.oss-cn-hangzhou.aliyuncs.com/mirrors/pybind11-$(VERSION).tar.gz
+# endif
 
 all: pybind11
 
@@ -36,8 +36,8 @@ $(BUILD):
 	$(MD5CMD)
 	tar -C $(DOWNLOAD_DIR) -xf $(TARBALL)
 	mv $(ARCHIVE_DIR) $(BUILD)
-	# apply patches
-	patch -u -b src/include/pybind11/pytypes.h -i patches/2.4.3-fix-object-destruct.patch
+	# # apply patches
+	# patch -u -b src/include/pybind11/pytypes.h -i patches/2.4.3-fix-object-destruct.patch
 
 clean:
 	rm -rf $(BUILD)

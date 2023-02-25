@@ -1,13 +1,38 @@
+const { Worker, isMainThread, parentPort } = require('worker_threads');
 
+if (isMainThread) {
+  const worker = new Worker(__filename);
 
-const boa = require('../');
+  worker.on('message', (message) => {
+    console.log(`Received message from worker: ${message}`);
 
-const sys = boa.import('sys')
+    worker.terminate();
 
+    // process.exit(1);
+  });
 
-console.log(sys.path)
+  worker.on('exit', () => {
+    console.log(`worker exit !!!!!`);
+  });
 
+  worker.postMessage('Hello from the main thread!');
+} else {
+  parentPort.on('message', (message) => {
+    console.log(`Received message from main thread: ${message}`);
+    parentPort.postMessage('Hello from the worker thread!');
 
-const numpy = boa.import('numpy')
+    const boa = require('../'); // @pipcook/boa 
 
-console.log(numpy);
+    const testUtils = boa.import('py-src.test-utils');
+
+    testUtils.sum(3, 4, (c) => {
+      console.log(`c === ${c}`);
+      return `hadfasdfasdf`;
+    });
+
+    // Worker.terminate();
+
+    // process.exit(); // 输出完消息后退出程序
+
+  });
+}

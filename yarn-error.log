@@ -1,0 +1,115 @@
+Arguments: 
+  /Users/wuyun/.nvm/versions/node/v16.19.0/bin/node /Users/wuyun/.nvm/versions/node/v16.19.0/bin/yarn publish
+
+PATH: 
+  /Users/wuyun/temp/boa/.miniconda/bin:/Users/wuyun/temp/boa/.miniconda/condabin:/Users/wuyun/.pyenv/shims:/Users/wuyun/Library/pnpm:/Users/wuyun/.nvm/versions/node/v16.19.0/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/wuyun/.cargo/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.19.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/Users/wuyun/.nvm/versions/node/v16.19.0/lib/node_modules/yarn/lib/cli.js:137150:13)
+      at Interface.emit (node:events:513:28)
+      at Interface._ttyWrite (node:readline:1085:16)
+      at ReadStream.onkeypress (node:readline:291:10)
+      at ReadStream.emit (node:events:513:28)
+      at emitKeys (node:internal/readline/utils:357:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:61:36)
+      at ReadStream.emit (node:events:513:28)
+      at addChunk (node:internal/streams/readable:315:12)
+
+npm manifest: 
+  {
+    "name": "@waynew/boa",
+    "version": "2.1.2",
+    "description": "Use Python modules seamlessly in Node.js",
+    "main": "lib/index.js",
+    "scripts": {
+      "clean": "sh tools/clean-python.sh && make -C ./pybind11/ clean",
+      "predeps": "tools/check-dependence.js",
+      "deps": "make -C ./pybind11/ && tools/install-python.js",
+      "install": "node-pre-gyp install --fallback-to-build=false || npm run build",
+      "pretest": "npm run lint && ./.miniconda/bin/pip install numpy",
+      "test": "ava",
+      "postinstall": "npm run build",
+      "cov": "nyc --reporter=text-summary npm run test",
+      "cov:report": "nyc report -r=lcov",
+      "lint": "npm run lint:js && npm run lint:clang",
+      "lint:js": "eslint . -c .eslintrc.js --no-eslintrc",
+      "lint:clang": "./clang-format.py",
+      "build": "npm run deps && npm run compile",
+      "pre-gyp": "node-pre-gyp package",
+      "codecov": "nyc report --reporter=lcovonly && codecov",
+      "htmlcov": "nyc report --reporter=html",
+      "compile": "node-pre-gyp rebuild"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/alibaba/pipcook.git"
+    },
+    "keywords": [
+      "python",
+      "pybind11"
+    ],
+    "gypfile": true,
+    "author": "Yorkie Liu <yorkiefixer@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/alibaba/pipcook/issues"
+    },
+    "homepage": "https://github.com/alibaba/pipcook#readme",
+    "ava": {
+      "extensions": [
+        "js",
+        "ts"
+      ],
+      "require": [
+        "ts-node/register"
+      ]
+    },
+    "dependencies": {
+      "@mapbox/node-pre-gyp": "^1.0.10",
+      "debug": "^4.1.1",
+      "node-addon-api": "^3.0.0"
+    },
+    "devDependencies": {
+      "@types/node": "^14.14.37",
+      "ava": "^5.2.0",
+      "codecov": "^3.6.5",
+      "eslint": "^7.15.0",
+      "nyc": "^15.1.0",
+      "ts-node": "^8.6.2",
+      "typescript": "^4.2.3"
+    },
+    "publishConfig": {
+      "access": "public"
+    },
+    "bin": {
+      "bip": "./tools/bip.js"
+    },
+    "binary": {
+      "module_name": "boa",
+      "module_path": "./binding/v{napi_build_version}",
+      "package_name": "{module_name}-v{version}-{platform}-{arch}-napi-v{napi_build_version}.tar.gz",
+      "host": "https://boa-binary.oss-cn-hangzhou.aliyuncs.com",
+      "bucket": "boa-binary",
+      "region": "oss-cn-hangzhou",
+      "napi_versions": [
+        6
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
